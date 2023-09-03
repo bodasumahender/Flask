@@ -47,3 +47,30 @@ def show_image(filename):
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.run(debug=True)
+
+//For Uploading Images
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+//For displaying uploaded Images
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Image</title>
+</head>
+<body>
+    <h1>Uploaded Image:</h1>
+    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="{{ filename }}">
+    <p>Image Name: {{ filename }}</p>
+</body>
+</html>
